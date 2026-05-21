@@ -3,258 +3,284 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> - DeVinci Race 2026 - </title>
+<title>DeVinci Race 2026 — La régate des Grandes Écoles</title>
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --navy: #fff7fb;
-    --blue: #f2afcf;
-
-    --accent: #e65599;
-    --accent-light: #f7c5da;
-
-    --gold: #d5c67d;
-
-    --white: #ffffff;
-    --text-muted: #4d4249;
-
-    --border: rgba(25, 6, 15, 0.18);
-        
+    --bg:           #fff7fb;
+    --bg-section:   #fdf0f6;
+    --accent:       #d4477a;
+    --accent-light: #e8a0bb;
+    --accent-pale:  #f7dce9;
+    --gold:         #c4a96b;
+    --text:         #3a1f2d;
+    --text-muted:   #7a5a6a;
+    --border:       rgba(180, 100, 140, 0.15);
+    --card-bg:      rgba(255,255,255,0.7);
   }
   html { scroll-behavior: smooth; }
   body {
     font-family: 'Barlow', sans-serif;
-    background: var(--navy);
-    color: #3d2d36;
+    background: var(--bg);
+    color: var(--text);
     font-weight: 300;
     overflow-x: hidden;
   }
 
-  /* NAV */
+  /* ── NAV ── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.2rem 3rem;
-    background: rgba(255, 248, 252, 0.82);
-    backdrop-filter: blur(12px);
+    background: rgba(255, 240, 248, 0.88);
+    backdrop-filter: blur(14px);
     border-bottom: 0.5px solid var(--border);
   }
   .nav-logo {
     font-family: 'Barlow Condensed', sans-serif;
     font-weight: 800; font-size: 1.5rem; letter-spacing: 0.08em;
-    color: var(--white); text-decoration: none;
+    color: var(--accent); text-decoration: none;
   }
   .nav-logo span { color: var(--accent-light); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
   .nav-links a {
     color: var(--text-muted); text-decoration: none;
-    font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 400;
+    font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500;
     transition: color 0.2s;
   }
-  .nav-links a:hover { color: var(--white); }
+  .nav-links a:hover { color: var(--accent); }
 
-  /* HERO */
+  /* ── HERO VIDÉO ── */
   .hero {
     min-height: 100vh;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 0 3rem 5rem;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
     position: relative; overflow: hidden;
+    text-align: center;
   }
-  .hero-bg {
-  background: linear-gradient(
-    135deg,
-    #fff8fc 0%,
-    #fdeef6 35%,
-    #fce4f0 70%,
-    #fff7fb 100%
-  );
+  .hero-video-wrap {
+    position: absolute; inset: 0; z-index: 0;
+    overflow: hidden;
   }
-  .hero-grid {
-    position: absolute; inset: 0; opacity: 0.07;
-    background-image:
-      linear-gradient(rgba(243, 169, 203, 0.25) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(243, 169, 203, 0.25) 1px, transparent 1px);
-    background-size: 60px 60px;
+  .hero-video-wrap video {
+    width: 100%; height: 100%;
+    object-fit: cover;
   }
-  .hero-wave {
-  background: linear-gradient(
-    to top,
-    rgba(243, 169, 203, 0.22) 0%,
-    rgba(255, 214, 232, 0.12) 60%,
-    transparent 100%
-  );
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 220, 238, 0.55) 0%,
+      rgba(200, 80, 130, 0.45) 50%,
+      rgba(60, 10, 30, 0.65) 100%
+    );
+  }
+  .hero-fallback-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(135deg, #fce8f3 0%, #f5b8d8 40%, #e0709f 70%, #c44c7a 100%);
   }
   .hero-accent-line {
-    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    position: absolute; top: 0; left: 0; right: 0; height: 3px; z-index: 3;
     background: linear-gradient(90deg, transparent, var(--accent), var(--gold), var(--accent), transparent);
   }
-  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .hero-content {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; align-items: center;
+    padding: 2rem;
+  }
   .hero-badge {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
-    color: var(--accent-light);
-    border: 0.5px solid rgba(236, 151, 172, 0.4);
-    padding: 0.4rem 1rem; border-radius: 2rem; margin-bottom: 1.5rem;
+    font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600;
+    color: white;
+    border: 1px solid rgba(255,255,255,0.5);
+    background: rgba(255,255,255,0.15);
+    padding: 0.45rem 1.2rem; border-radius: 2rem; margin-bottom: 2rem;
+    backdrop-filter: blur(4px);
   }
   .hero-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(4rem, 10vw, 8rem);
-    font-weight: 800; line-height: 0.9; letter-spacing: -0.01em;
+    font-size: clamp(5rem, 14vw, 11rem);
+    font-weight: 800; line-height: 0.88; letter-spacing: -0.01em;
+    color: white;
+    text-shadow: 0 4px 40px rgba(180, 40, 90, 0.4);
   }
-  .hero-title .line2 { color: var(--accent-light); }
+  .hero-title .line2 {
+    color: rgba(255,255,255,0.75);
+    display: block;
+  }
   .hero-edition {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem; font-weight: 600; color: var(--gold);
-    letter-spacing: 0.15em; margin-top: 0.5rem;
-  }
-  .hero-sub {
-    margin-top: 1.5rem; font-size: 1.1rem; color: var(--text-muted);
-    font-weight: 300; max-width: 480px; line-height: 1.7;
+    font-size: 1.2rem; font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 0.25em; text-transform: uppercase;
+    margin-top: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
   }
   .hero-date-pill {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    margin-top: 1.5rem;
-    background: rgba(201,146,42,0.12); border: 0.5px solid rgba(201,146,42,0.35);
-    padding: 0.6rem 1.2rem; border-radius: 3px;
+    margin-top: 1.8rem;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.4);
+    backdrop-filter: blur(8px);
+    padding: 0.65rem 1.5rem; border-radius: 3px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 600; color: var(--gold); letter-spacing: 0.06em;
+    font-size: 1.05rem; font-weight: 700; color: white; letter-spacing: 0.08em;
   }
   .hero-cta {
-    margin-top: 2rem; display: flex; gap: 1rem; align-items: center;
+    margin-top: 2.2rem; display: flex; gap: 1rem; align-items: center;
   }
   .btn-primary {
     background: var(--accent); color: white;
-    padding: 0.9rem 2.2rem; border-radius: 3px;
+    padding: 0.9rem 2.4rem; border-radius: 3px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.95rem; letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase;
-    border: none; cursor: pointer; transition: background 0.2s; text-decoration: none;
-    display: inline-block;
+    font-size: 1rem; letter-spacing: 0.12em; font-weight: 700; text-transform: uppercase;
+    border: none; cursor: pointer; transition: background 0.2s, transform 0.1s;
+    text-decoration: none; display: inline-block;
+    box-shadow: 0 4px 20px rgba(212, 71, 122, 0.4);
   }
-  .btn-primary:hover { background: #ea94bc; }
-  .btn-secondary {
-    color: var(--text-muted); font-size: 0.85rem; letter-spacing: 0.06em;
-    text-transform: uppercase; text-decoration: none; font-weight: 400;
-    transition: color 0.2s;
-  }
-  .btn-secondary:hover { color: white; }
-  .hero-stats {
-    position: absolute; right: 3rem; bottom: 5rem; z-index: 1;
-    display: flex; flex-direction: column; gap: 2rem; align-items: flex-end;
-  }
-  .hero-stat { text-align: right; }
-  .hero-stat .num {
+  .btn-primary:hover { background: #be3568; transform: translateY(-1px); }
+  .btn-outline {
+    background: rgba(255,255,255,0.15); color: white;
+    padding: 0.9rem 2rem; border-radius: 3px;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.5rem; font-weight: 700; line-height: 1; color: #5c4451;
+    font-size: 1rem; letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase;
+    border: 1px solid rgba(255,255,255,0.4); cursor: pointer;
+    transition: background 0.2s; text-decoration: none; display: inline-block;
+    backdrop-filter: blur(4px);
   }
-  .hero-stat .label { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--text-muted); text-transform: uppercase; }
+  .btn-outline:hover { background: rgba(255,255,255,0.28); }
+  .hero-stats-bar {
+    position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+    display: flex; justify-content: center; gap: 0;
+    background: rgba(40, 5, 20, 0.45);
+    backdrop-filter: blur(10px);
+    border-top: 0.5px solid rgba(255,255,255,0.15);
+  }
+  .hero-stat-item {
+    padding: 1.2rem 3rem;
+    text-align: center;
+    border-right: 0.5px solid rgba(255,255,255,0.1);
+  }
+  .hero-stat-item:last-child { border-right: none; }
+  .hero-stat-item .num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 2rem; font-weight: 800; color: white; line-height: 1;
+  }
+  .hero-stat-item .lbl {
+    font-size: 0.72rem; letter-spacing: 0.12em; color: rgba(255,255,255,0.6);
+    text-transform: uppercase; margin-top: 0.2rem;
+  }
 
-  /* SECTIONS */
+  /* ── SECTIONS COMMUNES ── */
   section { padding: 6rem 3rem; }
   .section-eyebrow {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--accent-light); font-weight: 600; margin-bottom: 0.75rem;
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600; margin-bottom: 0.6rem;
   }
   .section-title {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 700; line-height: 1.05;
-    margin-bottom: 1rem;
+    font-size: clamp(2.2rem, 4vw, 3.2rem); font-weight: 700; line-height: 1.05;
+    color: var(--text); margin-bottom: 1rem;
   }
-  .section-lead {
-    color: var(--text-muted); font-size: 1rem; line-height: 1.7; max-width: 620px;
-  }
+  .section-lead { color: var(--text-muted); font-size: 1rem; line-height: 1.75; max-width: 600px; }
   .divider {
-    width: 48px; height: 2px;
+    width: 40px; height: 2px;
     background: linear-gradient(90deg, var(--accent), var(--gold));
-    margin: 1.5rem 0;
+    margin: 1.2rem 0 1.8rem;
   }
 
-  /* À PROPOS */
+  /* ── À PROPOS ── */
   .about { border-top: 0.5px solid var(--border); }
   .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-  .about-text p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1rem; }
-  .about-text p strong { color: var(--white); font-weight: 500; }
+  .about-text p { color: var(--text-muted); font-size: 0.95rem; line-height: 1.85; margin-bottom: 1rem; }
+  .about-text p strong { color: var(--text); font-weight: 600; }
   .about-highlight {
-    margin-top: 2rem;
+    margin-top: 1.5rem;
     border-left: 2px solid var(--accent);
-    padding: 1rem 1.5rem;
-    background: rgba(26,127,212,0.05);
-    border-radius: 0 4px 4px 0;
+    padding: 0.9rem 1.4rem;
+    background: var(--accent-pale);
+    border-radius: 0 6px 6px 0;
   }
   .about-highlight p {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.05rem; color: var(--accent-light); line-height: 1.5; font-style: italic;
+    font-size: 1.05rem; color: var(--accent); line-height: 1.5; font-style: italic;
   }
-  .about-right { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about-right { display: flex; flex-direction: column; gap: 1.2rem; }
   .stat-card {
-    background: rgba(255,255,255,0.03); border: 0.5px solid var(--border);
-    border-radius: 4px; padding: 1.5rem;
+    background: var(--card-bg); border: 0.5px solid var(--border);
+    border-radius: 8px; padding: 1.4rem;
     display: flex; gap: 1.2rem; align-items: center;
+    box-shadow: 0 2px 12px rgba(180,80,120,0.06);
   }
   .stat-card .num {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 2.8rem; font-weight: 800; color: var(--accent-light); line-height: 1; min-width: 80px;
+    font-size: 2.6rem; font-weight: 800; color: var(--accent); line-height: 1; min-width: 75px;
   }
-  .stat-card .info .title { font-weight: 500; font-size: 0.95rem; margin-bottom: 0.2rem; }
-  .stat-card .info .desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+  .stat-card .info .ttl { font-weight: 600; font-size: 0.92rem; color: var(--text); margin-bottom: 0.2rem; }
+  .stat-card .info .dsc { font-size: 0.8rem; color: var(--text-muted); line-height: 1.5; }
 
-  /* PROGRAMME */
-  .programme { background: rgba(14,61,110,0.08); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+  /* ── PROGRAMME ── */
+  .programme { background: var(--bg-section); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
   .prog-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
   .date-badge {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.1rem; font-weight: 700; color: var(--gold);
-    background: rgba(201,146,42,0.1); border: 0.5px solid rgba(201,146,42,0.3);
-    padding: 0.6rem 1.5rem; border-radius: 3px; letter-spacing: 0.08em;
+    font-size: 1rem; font-weight: 700; color: var(--gold);
+    background: rgba(196, 169, 107, 0.1); border: 0.5px solid rgba(196,169,107,0.35);
+    padding: 0.55rem 1.4rem; border-radius: 3px; letter-spacing: 0.08em;
   }
   .days-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
   .day-label {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
-    color: var(--accent-light); margin-bottom: 1.5rem;
+    font-size: 0.9rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 1.5rem;
     padding-bottom: 0.75rem; border-bottom: 0.5px solid var(--border);
   }
-  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .timeline { display: flex; flex-direction: column; }
   .timeline-item {
-    display: grid; grid-template-columns: 90px 1px 1fr;
+    display: grid; grid-template-columns: 80px 1px 1fr;
     gap: 0 1.5rem; padding-bottom: 1.5rem; align-items: start;
   }
   .timeline-time {
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1rem; font-weight: 600; color: var(--accent-light);
+    font-size: 0.95rem; font-weight: 700; color: var(--accent);
     text-align: right; padding-top: 2px;
   }
   .timeline-line { width: 1px; background: var(--border); position: relative; align-self: stretch; }
   .timeline-dot {
     position: absolute; top: 6px; left: 50%; transform: translateX(-50%);
     width: 7px; height: 7px; border-radius: 50%;
-    background: var(--accent); border: 2px solid var(--navy);
+    background: var(--accent); border: 2px solid var(--bg-section);
   }
-  .timeline-event { font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 0.15rem; }
+  .timeline-event { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.15rem; }
   .timeline-desc { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
 
-  /* INSCRIPTION */
+  /* ── INSCRIPTION ── */
   .inscription { border-top: 0.5px solid var(--border); }
   .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
   .card {
-    background: rgba(255,255,255,0.03); border: 0.5px solid var(--border);
-    border-radius: 4px; padding: 2rem; transition: border-color 0.2s;
+    background: var(--card-bg); border: 0.5px solid var(--border);
+    border-radius: 8px; padding: 2rem; transition: border-color 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 12px rgba(180,80,120,0.05);
   }
-  .card:hover { border-color: rgba(243,169,203,0.4); }
-  .card.featured { border-color: rgba(243,169,203,0.5); background: rgba(26,127,212,0.06); }
+  .card:hover { border-color: rgba(212,71,122,0.35); box-shadow: 0 6px 24px rgba(180,80,120,0.1); }
+  .card.featured {
+    border-color: rgba(212,71,122,0.4);
+    background: linear-gradient(135deg, rgba(247,220,233,0.8), rgba(255,255,255,0.9));
+  }
   .card-badge {
     display: inline-block;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600;
-    background: rgba(66, 42, 201, 0.15); color: var(--gold);
-    border: 0.5px solid rgba(11, 51, 121, 0.3);
+    font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 700;
+    background: var(--accent-pale); color: var(--accent);
+    border: 0.5px solid rgba(212,71,122,0.25);
     padding: 0.3rem 0.8rem; border-radius: 2rem; margin-bottom: 1.2rem;
   }
-  .card-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
-  .card-price { font-family: 'Barlow Condensed', sans-serif; font-size: 2.2rem; font-weight: 800; color: #5c4451; margin-bottom: 0.3rem; }
-  .card-price span { font-size: 1rem; font-weight: 300; color: var(--text-muted); }
+  .card-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--text); margin-bottom: 0.4rem; }
+  .card-price { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800; color: var(--accent); margin-bottom: 0.3rem; }
+  .card-price span { font-size: 0.95rem; font-weight: 300; color: var(--text-muted); }
   .card-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1.5rem; }
   .card-list { list-style: none; margin-bottom: 2rem; }
   .card-list li {
@@ -262,134 +288,144 @@
     padding: 0.4rem 0; border-bottom: 0.5px solid var(--border);
     display: flex; align-items: center; gap: 0.6rem;
   }
-  .card-list li::before { content: '→'; color: var(--accent-light); font-size: 0.8rem; }
+  .card-list li::before { content: '→'; color: var(--accent); font-size: 0.8rem; }
   .btn-card {
     width: 100%; padding: 0.85rem;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem; letter-spacing: 0.1em; font-weight: 600; text-transform: uppercase;
-    border: 0.5px solid rgba(243,169,203,0.5); color: var(--accent-light);
+    font-size: 0.9rem; letter-spacing: 0.1em; font-weight: 700; text-transform: uppercase;
+    border: 1px solid rgba(212,71,122,0.4); color: var(--accent);
     background: transparent; border-radius: 3px; cursor: pointer; transition: all 0.2s;
   }
-  .btn-card:hover { background: rgba(243,169,203,0.15); color: #5c4451; }
+  .btn-card:hover { background: var(--accent-pale); }
   .btn-card.filled { background: var(--accent); border-color: var(--accent); color: white; }
-  .btn-card.filled:hover { background: #1568b0; }
+  .btn-card.filled:hover { background: #be3568; }
 
-  /* PARTENAIRES */
-  .partners { border-top: 0.5px solid var(--border); }
-  .partners-intro { max-width: 580px; margin-bottom: 3rem; }
+  /* ── PARTENAIRES ── */
   .partners-grid {
-    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 1px; border: 0.5px solid var(--border); border-radius: 4px; overflow: hidden;
-    margin-bottom: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 3.5rem;
+    margin: 2.5rem 0 1.5rem;
   }
   .partner-item {
-    padding: 1.5rem 1.2rem;
-    background: rgba(255,255,255,0.02);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    background: transparent;
     border: none;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s;
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.9rem; font-weight: 600; color: var(--text-muted);
-    text-align: center; letter-spacing: 0.05em; text-transform: uppercase;
-    min-height: 80px;
+    min-height: unset;
+    transition: transform 0.2s, opacity 0.2s;
   }
-  .partner-item:hover { background: rgba(243,169,203,0.08); color: var(--white); }
-  .partner-item.highlight { color: var(--accent-light); }
+  .partner-item:hover {
+    transform: scale(1.08);
+    opacity: 0.85;
+    background: transparent;
+  }
+  .partner-item img {
+    max-height: 100px;
+    max-width: 200px;
+    object-fit: contain;
+    filter: grayscale(20%);
+    transition: filter 0.2s;
+  }
+  .partner-item:hover img {
+    filter: grayscale(0%);
+  }
+  .partner-item.highlight { color: var(--accent); }
 
-  /* CONTACT */
+  /* ── CONTACT ── */
   .contact { border-top: 0.5px solid var(--border); }
   .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; }
   .contact-info-block { margin-top: 2rem; }
   .contact-assoc {
-    display: flex; align-items: flex-start; gap: 1.5rem;
+    display: flex; align-items: flex-start; gap: 1.4rem;
     margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 0.5px solid var(--border);
   }
   .assoc-logo {
-    width: 70px; height: 70px; border-radius: 50%;
-    background: rgba(255,255,255,0.06); border: 0.5px solid var(--border);
-    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    width: 66px; height: 66px; border-radius: 50%; flex-shrink: 0;
+    background: var(--accent-pale); border: 1.5px solid rgba(212,71,122,0.3);
+    display: flex; align-items: center; justify-content: center;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.8rem; font-weight: 800; letter-spacing: 0.05em; color: var(--accent-light);
-    text-align: center;
+    font-size: 0.85rem; font-weight: 800; letter-spacing: 0.05em; color: var(--accent);
   }
-  .assoc-info .name {
-    font-family: 'Barlow Condensed', sans-serif;
-    font-size: 1.3rem; font-weight: 700; margin-bottom: 0.3rem;
-  }
-  .assoc-info a { color: var(--accent-light); font-size: 0.85rem; text-decoration: none; }
+  .assoc-info .name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+  .assoc-info a { color: var(--accent); font-size: 0.85rem; text-decoration: none; }
   .assoc-info a:hover { text-decoration: underline; }
   .assoc-info p { color: var(--text-muted); font-size: 0.82rem; margin-top: 0.2rem; }
   .team-list { display: flex; flex-direction: column; gap: 1.2rem; }
   .team-member { display: flex; gap: 1rem; align-items: flex-start; }
   .avatar {
-    width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
-    background: rgba(243,169,203,0.15); border: 0.5px solid rgba(26,127,212,0.3);
+    width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+    background: var(--accent-pale); border: 1px solid rgba(212,71,122,0.25);
     display: flex; align-items: center; justify-content: center;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.85rem; font-weight: 700; color: var(--accent-light);
+    font-size: 0.82rem; font-weight: 700; color: var(--accent);
   }
-  .member-name { font-weight: 500; font-size: 0.95rem; margin-bottom: 0.1rem; }
-  .member-role { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 0.25rem; }
-  .member-contact { font-size: 0.8rem; color: var(--accent-light); }
+  .member-name { font-weight: 600; font-size: 0.92rem; color: var(--text); margin-bottom: 0.1rem; }
+  .member-role { font-size: 0.76rem; color: var(--text-muted); margin-bottom: 0.25rem; }
+  .member-contact { font-size: 0.78rem; color: var(--accent); }
+  .social-row { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
+  .social-btn {
+    padding: 0.5rem 1.1rem; border-radius: 3px;
+    border: 1px solid var(--border);
+    font-size: 0.78rem; color: var(--text-muted); text-decoration: none;
+    transition: all 0.2s; font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    background: var(--card-bg);
+  }
+  .social-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-pale); }
   .location-block {
-    background: rgba(255,255,255,0.03); border: 0.5px solid var(--border);
-    border-radius: 4px; overflow: hidden; margin-top: 2rem;
+    background: var(--card-bg); border: 0.5px solid var(--border);
+    border-radius: 8px; overflow: hidden; margin-top: 2rem;
+    box-shadow: 0 2px 12px rgba(180,80,120,0.06);
   }
   .location-map {
-    height: 200px; background: linear-gradient(135deg, #0e2744, #1a4a7a);
+    height: 180px; background: linear-gradient(135deg, #f5cce0, #e8a0bb);
     position: relative; display: flex; align-items: center; justify-content: center;
   }
-  .location-map svg { opacity: 0.5; }
   .location-map-label {
     position: absolute; top: 1rem; left: 1rem;
     font-family: 'Barlow Condensed', sans-serif;
-    font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--accent-light); font-weight: 600;
-    background: rgba(10,22,40,0.8); padding: 0.3rem 0.8rem; border-radius: 2rem;
-    border: 0.5px solid rgba(90,174,232,0.3);
+    font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); font-weight: 700;
+    background: white; padding: 0.3rem 0.8rem; border-radius: 2rem;
+    border: 0.5px solid rgba(212,71,122,0.25);
   }
   .location-details { padding: 1.2rem 1.5rem; }
   .location-row { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 0.8rem; }
-  .location-icon { color: var(--accent-light); font-size: 1rem; flex-shrink: 0; margin-top: 2px; }
-  .location-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
-  .location-val { font-size: 0.9rem; }
-  .social-row { display: flex; gap: 1rem; margin-top: 1.5rem; }
-  .social-btn {
-    display: flex; align-items: center; gap: 0.5rem;
-    padding: 0.5rem 1rem; border-radius: 3px;
-    border: 0.5px solid var(--border);
-    font-size: 0.8rem; color: var(--text-muted); text-decoration: none;
-    transition: all 0.2s; font-family: 'Barlow Condensed', sans-serif;
-    font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
-  }
-  .social-btn:hover { border-color: rgba(90,174,232,0.4); color: var(--white); }
+  .location-label { font-size: 0.72rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .location-val { font-size: 0.88rem; color: var(--text); }
   .contact-form { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
   .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
   .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
-  .form-label { font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
+  .form-label { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); font-weight: 500; }
   .form-input {
-    background: rgba(255,255,255,0.04); border: 0.5px solid var(--border);
-    color: white; padding: 0.75rem 1rem; border-radius: 3px;
+    background: white; border: 1px solid var(--border);
+    color: var(--text); padding: 0.75rem 1rem; border-radius: 6px;
     font-family: 'Barlow', sans-serif; font-size: 0.9rem; font-weight: 300;
     transition: border-color 0.2s; outline: none;
   }
-  .form-input:focus { border-color: rgba(243,169,203,0.6); }
-  .form-input::placeholder { color: var(--text-muted); }
+  .form-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212,71,122,0.1); }
+  .form-input::placeholder { color: #c4a4b4; }
   textarea.form-input { resize: vertical; min-height: 100px; }
 
-  /* FOOTER */
+  /* ── FOOTER ── */
   footer {
-    padding: 2.5rem 3rem;
+    padding: 2rem 3rem;
     border-top: 0.5px solid var(--border);
+    background: var(--bg-section);
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 1rem;
   }
-  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700; letter-spacing: 0.08em; }
+  .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 800; letter-spacing: 0.08em; color: var(--accent); }
   .footer-logo span { color: var(--accent-light); }
-  .footer-copy { font-size: 0.8rem; color: var(--text-muted); }
+  .footer-copy { font-size: 0.78rem; color: var(--text-muted); }
   .footer-links { display: flex; gap: 1.5rem; }
-  .footer-links a { font-size: 0.8rem; color: var(--text-muted); text-decoration: none; }
-  .footer-links a:hover { color: #5c4451; }
+  .footer-links a { font-size: 0.78rem; color: var(--text-muted); text-decoration: none; }
+  .footer-links a:hover { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -406,52 +442,62 @@
   </ul>
 </nav>
 
-<!-- HERO -->
+<!-- ════════════════ HERO VIDÉO ════════════════ -->
 <section class="hero" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-wave"></div>
+  <div class="hero-video-wrap">
+    <iframe
+      src="https://www.youtube.com/embed/3_LBVF6vvng?autoplay=1&mute=1&loop=1&playlist=3_LBVF6vvng&controls=0&showinfo=0&rel=0&start=3159&end=3189"
+      style="position:absolute;inset:0;width:100%;height:100%;border:none;transform:scale(1.3)"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="hero-fallback-bg"></div>
+  <div class="hero-overlay"></div>
   <div class="hero-accent-line"></div>
   <div class="hero-content">
     <div class="hero-badge">Aviron · Port de Grenelle · Paris 15ème</div>
     <h1 class="hero-title">
-      <span class="line1">DEVINCI</span><br>
+      DEVINCI<br>
       <span class="line2">RACE</span>
     </h1>
     <div class="hero-edition">4ème Édition</div>
-    <p class="hero-sub">La grande régate des Grandes Écoles de France. Des courses-duels sur la Seine, en plein cœur de Paris.</p>
     <div class="hero-date-pill">📅 18 &amp; 19 avril 2026</div>
     <div class="hero-cta">
       <a href="#inscription" class="btn-primary">S'inscrire</a>
-      <a href="#about" class="btn-secondary">Découvrir l'événement →</a>
+      <a href="#about" class="btn-outline">Découvrir →</a>
     </div>
   </div>
-  <div class="hero-stats">
-    <div class="hero-stat">
+  <div class="hero-stats-bar">
+    <div class="hero-stat-item">
       <div class="num">145+</div>
-      <div class="label">Rameurs en 2025</div>
+      <div class="lbl">Rameurs en 2025</div>
     </div>
-    <div class="hero-stat">
+    <div class="hero-stat-item">
       <div class="num">750m</div>
-      <div class="label">De parcours</div>
+      <div class="lbl">Parcours</div>
     </div>
-    <div class="hero-stat">
+    <div class="hero-stat-item">
       <div class="num">70</div>
-      <div class="label">Membres ADV</div>
+      <div class="lbl">Membres ADV</div>
+    </div>
+    <div class="hero-stat-item">
+      <div class="num">4ème</div>
+      <div class="lbl">Édition</div>
     </div>
   </div>
 </section>
 
-<!-- À PROPOS -->
-<section class="about" id="about">
-  <div class="about-grid">
+<!-- ════════════════ À PROPOS ════════════════ -->
+<section class="about" id="about" style="background-image: url('PhotosSite/IMG_9041.jpg'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+  <div style="position:absolute;inset:0;background:rgba(255,240,248,0.70);z-index:0;"></div>  <div class="about-grid" style="position:relative;z-index:1;">
     <div class="about-text">
       <div class="section-eyebrow">L'association</div>
       <h2 class="section-title">Aviron De Vinci</h2>
       <div class="divider"></div>
       <p><strong>Aviron De Vinci</strong>, fondée en 2020 par des étudiants passionnés, est une association universitaire composée de <strong>70 membres</strong> issus des trois écoles du Pôle Léonard De Vinci, réunis autour de la pratique compétitive de l'aviron.</p>
       <p>Depuis sa création, l'association a connu un succès croissant, marqué par deux années consécutives de participation aux <strong>championnats de France universitaires</strong>. En 2023, deux rameurs ont représenté l'association aux <strong>Championnats d'Europe Universitaire en Pologne</strong>.</p>
-      <p>L'association s'est inspirée de la célèbre <em>Boat Race</em> opposant Oxford et Cambridge sur la Tamise depuis 1829. Notre volonté : organiser un événement aussi mythique sur la <strong>Seine</strong>, en symbiose avec le rayonnement de Paris.</p>
+      <p>Inspirée de la célèbre <em>Boat Race</em> opposant Oxford et Cambridge sur la Tamise depuis 1829, notre volonté est d'organiser un événement aussi mythique sur la <strong>Seine</strong>, en symbiose avec le rayonnement de Paris.</p>
       <div class="about-highlight">
         <p>"Être en plein cœur de Paris, le podium animé, le partage d'un pot convivial rendent l'ambiance de la De Vinci Race mémorable."</p>
       </div>
@@ -460,132 +506,134 @@
       <div class="stat-card">
         <div class="num">3ème</div>
         <div class="info">
-          <div class="title">Édition en 2025</div>
-          <div class="desc">26 &amp; 27 avril 2025 au Port de Grenelle. Départ au Pont Bir-Hakeim, courses de 750m, duels 1 contre 1.</div>
+          <div class="ttl">Édition en 2025</div>
+          <div class="dsc">26 &amp; 27 avril 2025 au Port de Grenelle. Départ au Pont Bir-Hakeim, courses de 750m en duels.</div>
         </div>
       </div>
       <div class="stat-card">
         <div class="num">4+</div>
         <div class="info">
-          <div class="title">Années d'existence</div>
-          <div class="desc">Fondée en 2020, l'association a rapidement imposé sa marque dans le milieu universitaire français.</div>
+          <div class="ttl">Années d'existence</div>
+          <div class="dsc">Fondée en 2020, l'association s'est rapidement imposée dans le milieu universitaire français.</div>
         </div>
       </div>
       <div class="stat-card">
         <div class="num">8</div>
         <div class="info">
-          <div class="title">Le bateau roi</div>
-          <div class="desc">4 de couple et 8 : les deux formats phares de la compétition, ouverts aux étudiants de toute la France.</div>
+          <div class="ttl">Le bateau roi</div>
+          <div class="dsc">4 de couple et 8 : les deux formats phares de la compétition, ouverts aux étudiants de toute la France.</div>
         </div>
       </div>
       <div class="stat-card">
         <div class="num">2</div>
         <div class="info">
-          <div class="title">Antennes en France</div>
-          <div class="desc">Paris et Nantes. L'association étend son impact dans le paysage de l'aviron français.</div>
+          <div class="ttl">Antennes en France</div>
+          <div class="dsc">Paris et Nantes. L'association étend son impact dans le paysage de l'aviron français.</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- PROGRAMME -->
-<section class="programme" id="programme">
-  <div class="prog-header">
-    <div>
-      <div class="section-eyebrow">Déroulement</div>
-      <h2 class="section-title">Programme de la 4ème édition</h2>
-      <div class="divider"></div>
+<!-- ════════════════ PROGRAMME ════════════════ -->
+<section class="programme" id="programme" style="background-image: url('PhotosSite/IMG_9093.jpg'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+  <div style="position:absolute;inset:0;background:rgba(253,240,246,0.72);z-index:0;"></div>  <div style="position:relative;z-index:1;">
+    <div class="prog-header">
+      <div>
+        <div class="section-eyebrow">Déroulement</div>
+        <h2 class="section-title">Programme de la 4ème édition</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="date-badge">18 &amp; 19 Avril 2026 · Port de Grenelle</div>
     </div>
-    <div class="date-badge">18 &amp; 19 Avril 2026 · Port de Grenelle</div>
-  </div>
-  <div class="days-grid">
-    <div>
-      <div class="day-label">Vendredi 18 avril — Qualifications</div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-time">8h00</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Accueil &amp; Enregistrement</div>
-            <div class="timeline-desc">Remise des dossards et briefing sécurité au Port de Grenelle.</div>
+    <div class="days-grid">
+      <div>
+        <div class="day-label">Vendredi 18 avril — Qualifications</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-time">8h00</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Accueil &amp; Enregistrement</div>
+              <div class="timeline-desc">Remise des dossards et briefing sécurité au Port de Grenelle.</div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">9h30</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Séries de qualification</div>
-            <div class="timeline-desc">Départ au Pont Bir-Hakeim. Courses-duels 1 contre 1 sur 750 mètres.</div>
+          <div class="timeline-item">
+            <div class="timeline-time">9h30</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Séries de qualification</div>
+              <div class="timeline-desc">Départ au Pont Bir-Hakeim. Courses-duels 1 contre 1 sur 750 mètres.</div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">12h30</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Pause déjeuner</div>
-            <div class="timeline-desc">Restauration sur place &amp; village associatif.</div>
+          <div class="timeline-item">
+            <div class="timeline-time">12h30</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Pause déjeuner</div>
+              <div class="timeline-desc">Restauration sur place &amp; village associatif.</div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">14h00</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Suite des qualifications</div>
-            <div class="timeline-desc">Reprise des courses. Toutes catégories : 4 de couple &amp; 8.</div>
+          <div class="timeline-item">
+            <div class="timeline-time">14h00</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Suite des qualifications</div>
+              <div class="timeline-desc">Reprise des courses. Toutes catégories : 4 de couple &amp; 8.</div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">18h00</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Soirée de gala</div>
-            <div class="timeline-desc">Pot convivial et soirée des participants.</div>
+          <div class="timeline-item">
+            <div class="timeline-time">18h00</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Soirée de gala</div>
+              <div class="timeline-desc">Pot convivial et soirée des participants.</div>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <div>
-      <div class="day-label">Samedi 19 avril — Finales</div>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-time">9h00</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Ouverture du site</div>
-            <div class="timeline-desc">Accueil du public et des équipes finalistes.</div>
+      <div>
+        <div class="day-label">Samedi 19 avril — Finales</div>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-time">9h00</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Ouverture du site</div>
+              <div class="timeline-desc">Accueil du public et des équipes finalistes.</div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">10h00</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Demi-finales</div>
-            <div class="timeline-desc">Les meilleures équipes s'affrontent pour une place en finale.</div>
+          <div class="timeline-item">
+            <div class="timeline-time">10h00</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Demi-finales</div>
+              <div class="timeline-desc">Les meilleures équipes s'affrontent pour une place en finale.</div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">13h00</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Pause déjeuner</div>
-            <div class="timeline-desc">Animation et village des partenaires.</div>
+          <div class="timeline-item">
+            <div class="timeline-time">13h00</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Pause déjeuner</div>
+              <div class="timeline-desc">Animation et village des partenaires.</div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">15h00</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Grandes Finales</div>
-            <div class="timeline-desc">Les finales 4 de couple et 8. Ambiance podium en plein Paris.</div>
+          <div class="timeline-item">
+            <div class="timeline-time">15h00</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Grandes Finales</div>
+              <div class="timeline-desc">Les finales 4 de couple et 8. Ambiance podium en plein Paris.</div>
+            </div>
           </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">17h00</div>
-          <div class="timeline-line"><div class="timeline-dot"></div></div>
-          <div class="timeline-body">
-            <div class="timeline-event">Cérémonie de remise des prix</div>
-            <div class="timeline-desc">Podium, trophées &amp; cocktail de clôture.</div>
+          <div class="timeline-item">
+            <div class="timeline-time">17h00</div>
+            <div class="timeline-line"><div class="timeline-dot"></div></div>
+            <div class="timeline-body">
+              <div class="timeline-event">Cérémonie de remise des prix</div>
+              <div class="timeline-desc">Podium, trophées &amp; cocktail de clôture.</div>
+            </div>
           </div>
         </div>
       </div>
@@ -593,80 +641,108 @@
   </div>
 </section>
 
-<!-- INSCRIPTION -->
-<section class="inscription" id="inscription">
-  <div class="section-eyebrow">Participer</div>
-  <h2 class="section-title">Inscriptions — 4ème édition</h2>
-  <div class="divider"></div>
-  <p class="section-lead">Les tarifs pour la 4ème édition seront annoncés prochainement. Laissez vos coordonnées pour être notifié dès l'ouverture des inscriptions.</p>
-  <div class="cards-grid">
-    <div class="card">
-      <div class="card-cat">4 de couple</div>
-      <div class="card-price">À venir <span>/ équipe</span></div>
-      <div class="card-desc">Course en 4 rameurs en couple. Format accessible, idéal pour les équipes mixtes.</div>
-      <ul class="card-list">
-        <li>4 rameurs par embarcation</li>
-        <li>Catégories homme, femme, mixte</li>
-        <li>Courses-duels 1 contre 1</li>
-        <li>750 mètres de parcours</li>
-      </ul>
-      
-    </div>
-    <div class="card featured">
-      <div class="card-cat">8 rameurs</div>
-      <div class="card-price">À venir <span>/ équipe</span></div>
-      <div class="card-desc">Le format phare de la De Vinci Race. L'épreuve reine de l'aviron universitaire.</div>
-      <ul class="card-list">
-        <li>8 rameurs + 1 barreur</li>
-        <li>Format spectaculaire</li>
-        <li>Trophée pour les vainqueurs</li>
-        <li>Esprit d'équipe &amp; adrénaline</li>
-      </ul>
-     
-    </div>
-    <div class="card">
-      <div class="card-cat">Étudiant</div>
-      <div class="card-price">Tarif préf. <span>/ pers.</span></div>
-      <div class="card-desc">Tarif préférentiel pour les étudiants. Toutes écoles de France acceptées.</div>
-      <ul class="card-list">
-        <li>Carte étudiante obligatoire</li>
-        <li>Solo ou en équipe</li>
-        <li>Toutes grandes écoles</li>
-        <li>Licence sportive requise</li>
-      </ul>
+<!-- ════════════════ INSCRIPTION ════════════════ -->
+<section class="inscription" id="inscription" style="background-image: url('PhotosSite/IMG_9130.jpg'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+  <div style="position:absolute;inset:0;background:rgba(255,247,251,0.70);z-index:0;"></div>  <div style="position:relative;z-index:1;">
+    <div class="section-eyebrow">Participer</div>
+    <h2 class="section-title">Inscriptions — 4ème édition</h2>
+    <div class="divider"></div>
+    <p class="section-lead">Les tarifs pour la 4ème édition seront annoncés prochainement. Laissez vos coordonnées pour être notifié dès l'ouverture des inscriptions.</p>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-cat">4 de couple</div>
+        <div class="card-price">À venir <span>/ équipe</span></div>
+        <div class="card-desc">Course en 4 rameurs en couple. Format accessible, idéal pour les équipes mixtes.</div>
+        <ul class="card-list">
+          <li>4 rameurs par embarcation</li>
+          <li>Catégories homme, femme, mixte</li>
+          <li>Courses-duels 1 contre 1</li>
+          <li>750 mètres de parcours</li>
+        </ul>
+        <button class="btn-card">Être notifié</button>
+      </div>
+      <div class="card featured">
+        <div class="card-badge">⭐ Le bateau roi</div>
+        <div class="card-cat">8 rameurs</div>
+        <div class="card-price">À venir <span>/ équipe</span></div>
+        <div class="card-desc">Le format phare de la De Vinci Race. L'épreuve reine de l'aviron universitaire.</div>
+        <ul class="card-list">
+          <li>8 rameurs + 1 barreur</li>
+          <li>Format spectaculaire</li>
+          <li>Trophée pour les vainqueurs</li>
+          <li>Esprit d'équipe &amp; adrénaline</li>
+        </ul>
+        <button class="btn-card filled">Être notifié</button>
+      </div>
+      <div class="card">
+        <div class="card-cat">Étudiant</div>
+        <div class="card-price">Tarif préf. <span>/ pers.</span></div>
+        <div class="card-desc">Tarif préférentiel pour les étudiants. Toutes écoles de France acceptées.</div>
+        <ul class="card-list">
+          <li>Carte étudiante obligatoire</li>
+          <li>Solo ou en équipe</li>
+          <li>Toutes grandes écoles</li>
+          <li>Licence sportive requise</li>
+        </ul>
+        <button class="btn-card">Être notifié</button>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- PARTENAIRES -->
+<!-- ════════════════ PARTENAIRES ════════════════ -->
 <section class="partners" id="partners">
   <div class="section-eyebrow">Soutiens</div>
   <h2 class="section-title">Nos partenaires pour cette 4ème édition</h2>
   <div class="divider"></div>
-  <p class="section-lead partners-intro">La De Vinci Race est rendue possible grâce au soutien de partenaires engagés, de notre club, de nos institutions et de nombreux acteurs motivés par le projet.</p>
+  <p class="section-lead">La De Vinci Race est rendue possible grâce au soutien de partenaires engagés, de notre club, de nos institutions et de nombreux acteurs motivés par le projet.</p>
   <div class="partners-grid">
-    <div class="partner-item highlight">Boulogne 92</div>
-    <div class="partner-item highlight">Pôle Léonard De Vinci</div>
-    <div class="partner-item highlight">Fédération Française d'Aviron</div>
-    <div class="partner-item">MAIF</div>
-    <div class="partner-item">Crédit Mutuel</div>
-    <div class="partner-item">De Vinci Higher Education</div>
-    <div class="partner-item">Paris Yacht Marina</div>
-    <div class="partner-item">Crous Versailles</div>
-    <div class="partner-item">Entre-Mets Traiteur</div>
-    <div class="partner-item">CIDI</div>
-    <div class="partner-item">FF Sport U</div>
-    <div class="partner-item">FFAviron Île-de-France</div>
-    <div class="partner-item">Hansen Marine</div>
-    <div class="partner-item">Communauté Portuaire de Paris</div>
-    <div class="partner-item">Ville de Paris</div>
+    <div class="partner-item">
+      <img src="Logo Boulogne 92 - Bonne version_detoure.png" alt="Boulogne 92">
+    </div>
+    <div class="partner-item">
+      <img src="Logo CIDI_detoure.png" alt="CIDI">
+    </div>
+    <div class="partner-item">
+      <img src="Logo CPP_detoure.png" alt="Communauté Portuaire de Paris">
+    </div>
+    <div class="partner-item">
+      <img src="Logo CROUS Versailles_detoure.png" alt="Crous Versailles">
+    </div>
+    <div class="partner-item">
+      <img src="Logo CVEC_detoure.png" alt="CVEC">
+    </div>
+    <div class="partner-item">
+      <img src="Logo Entre-Mets_detoure.png" alt="Entre-Mets Traiteur">
+    </div>
+    <div class="partner-item">
+      <img src="Logo FFA V2_detoure.png" alt="FFAviron Île-de-France">
+    </div>
+    <div class="partner-item">
+      <img src="Logo FFSU_detoure.png" alt="FF Sport U">
+    </div>
+    <div class="partner-item">
+      <img src="LOGO Incept classique_detoure.png" alt="Incept">
+    </div>
+    <div class="partner-item">
+      <img src="Logo PYM.png" alt="Paris Yacht Marina">
+    </div>
+    <div class="partner-item">
+      <img src="Logo Hansen Marine.png" alt="Hansen Marine">
+    </div>
+    <div class="partner-item">
+      <img src="Logo-pole.png" alt="Pôle De Vinci">
+    </div>
+    <div class="partner-item">
+      <img src="Logo CM.png" alt="Crédit Mutuel">
+    </div>
   </div>
-  <p style="font-size:0.82rem; color:var(--text-muted); margin-top:1rem;">Vous souhaitez soutenir la 4ème édition ? Contactez-nous à <a href="mailto:avirondevinci@devinci.fr" style="color:var(--accent-light);">avirondevinci@devinci.fr</a></p>
+  <p style="font-size:0.82rem; color:var(--text-muted);">Vous souhaitez soutenir la 4ème édition ? <a href="mailto:avirondevinci@devinci.fr" style="color:var(--accent);">avirondevinci@devinci.fr</a></p>
 </section>
 
-<!-- CONTACT -->
-<section class="contact" id="contact">
-  <div class="contact-grid">
+<!-- ════════════════ CONTACT ════════════════ -->
+<section class="contact" id="contact" style="background-image: url('PhotosSite/IMG_9375.jpg'); background-size: cover; background-position: center; background-attachment: fixed; position: relative;">
+  <div style="position:absolute;inset:0;background:rgba(255,247,251,0.71);z-index:0;"></div>    <div class="contact-grid" style="position:relative;z-index:1;">
     <div>
       <div class="section-eyebrow">Nous trouver</div>
       <h2 class="section-title">Contact</h2>
@@ -678,7 +754,7 @@
             <div class="name">Aviron De Vinci</div>
             <a href="http://avirondevinci.fr">avirondevinci.fr</a>
             <p>avirondevinci@devinci.fr</p>
-            <p style="margin-top:0.3rem; color:var(--text-muted); font-size:0.8rem;">12 Avenue Léonard de Vinci — 92400 Courbevoie</p>
+            <p style="margin-top:0.3rem; font-size:0.78rem;">12 Avenue Léonard de Vinci — 92400 Courbevoie</p>
           </div>
         </div>
         <div class="team-list">
@@ -702,7 +778,7 @@
             <div class="avatar">MB</div>
             <div>
               <div class="member-name">Maxime Broussart</div>
-              <div class="member-role">Alumni consultant — Membre du Bureau Boulogne 92</div>
+              <div class="member-role">Alumni consultant — Bureau Boulogne 92</div>
               <div class="member-contact">Mbroussard@gmail.com · +33 6 67 56 92 67</div>
             </div>
           </div>
@@ -713,33 +789,33 @@
         </div>
       </div>
     </div>
-    <div class="contact-right">
+    <div>
       <div class="section-eyebrow">Localisation &amp; Message</div>
       <h2 class="section-title">Port de Grenelle</h2>
       <div class="divider"></div>
       <div class="location-block">
         <div class="location-map">
           <div class="location-map-label">📍 Paris 15ème</div>
-          <svg width="160" height="100" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10 65 Q80 20 150 65" stroke="rgba(90,174,232,0.5)" stroke-width="2" fill="none"/>
-            <path d="M30 65 L130 65 L122 78 Q80 88 38 78 Z" fill="rgba(26,127,212,0.2)" stroke="rgba(26,127,212,0.4)" stroke-width="0.5"/>
-            <line x1="80" y1="65" x2="80" y2="18" stroke="rgba(90,174,232,0.4)" stroke-width="1.5"/>
-            <path d="M80 18 L108 42 L80 45 Z" fill="rgba(90,174,232,0.15)" stroke="rgba(90,174,232,0.35)" stroke-width="0.5"/>
+          <svg width="140" height="85" viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 65 Q80 20 150 65" stroke="rgba(212,71,122,0.5)" stroke-width="2" fill="none"/>
+            <path d="M30 65 L130 65 L122 78 Q80 88 38 78 Z" fill="rgba(212,71,122,0.15)" stroke="rgba(212,71,122,0.35)" stroke-width="0.5"/>
+            <line x1="80" y1="65" x2="80" y2="18" stroke="rgba(212,71,122,0.5)" stroke-width="1.5"/>
+            <path d="M80 18 L108 42 L80 45 Z" fill="rgba(212,71,122,0.1)" stroke="rgba(212,71,122,0.3)" stroke-width="0.5"/>
           </svg>
         </div>
         <div class="location-details">
           <div class="location-row">
-            <span class="location-icon">📍</span>
+            <span style="color:var(--accent)">📍</span>
             <div>
               <div class="location-label">Adresse</div>
-              <div class="location-val">Quai de Grenelle, 75015 Paris<br><span style="font-size:0.82rem; color:var(--text-muted)">Départ des courses au Pont Bir-Hakeim</span></div>
+              <div class="location-val">Quai de Grenelle, 75015 Paris<br><span style="font-size:0.8rem; color:var(--text-muted)">Départ au Pont Bir-Hakeim</span></div>
             </div>
           </div>
           <div class="location-row">
-            <span class="location-icon">🚇</span>
+            <span style="color:var(--accent)">🚇</span>
             <div>
               <div class="location-label">Accès</div>
-              <div class="location-val">Métro Bir-Hakeim (ligne 6) · RER C Champ de Mars</div>
+              <div class="location-val">Métro Bir-Hakeim (L6) · RER C Champ de Mars</div>
             </div>
           </div>
         </div>
@@ -763,14 +839,14 @@
           <label class="form-label">Message</label>
           <textarea class="form-input" placeholder="Votre message..."></textarea>
         </div>
-        <button class="btn-primary" style="align-self:flex-start">Envoyer le message</button>
+        <button class="btn-primary" style="align-self:flex-start">Envoyer →</button>
       </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="footer-logo">DEVINCI <span>RACE</span> <span style="color:var(--text-muted); font-size:0.8rem; font-weight:300; letter-spacing:0"> — Aviron De Vinci</span></div>
+  <div class="footer-logo">DEVINCI <span>RACE</span></div>
   <div class="footer-copy">© 2026 Aviron De Vinci — ESTD 2020 · 12 Avenue Léonard De Vinci, 92400 Courbevoie</div>
   <div class="footer-links">
     <a href="http://avirondevinci.fr">avirondevinci.fr</a>
