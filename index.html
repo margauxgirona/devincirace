@@ -430,6 +430,51 @@
   .footer-links { display: flex; gap: 1.5rem; }
   .footer-links a { font-size: 0.78rem; color: var(--text-muted); text-decoration: none; }
   .footer-links a:hover { color: var(--accent); }
+
+  /* ── HAMBURGER ── */
+  .nav-toggle {
+    display: none;
+    background: none; border: none; cursor: pointer;
+    font-size: 1.6rem; color: var(--accent); padding: 0.2rem; line-height: 1;
+  }
+
+  /* ── RESPONSIVE MOBILE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
+    .nav-toggle { display: block; }
+    .nav-links {
+      display: none; width: 100%; flex-direction: column; gap: 0;
+      background: rgba(255,240,248,0.97); border-top: 0.5px solid var(--border);
+      padding: 0.5rem 0; list-style: none;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a { display: block; padding: 0.75rem 1.2rem; font-size: 0.9rem; }
+
+    section { padding: 3.5rem 1.5rem; }
+
+    .hero-stat-item { padding: 0.75rem 1rem; }
+    .hero-stat-item .num { font-size: 1.4rem; }
+    .hero-stat-item .lbl { font-size: 0.6rem; }
+    .hero-cta { flex-direction: column; align-items: stretch; }
+    .hero-cta a { text-align: center; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    .prog-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .days-grid { grid-template-columns: 1fr; gap: 2rem; }
+
+    .cards-grid { grid-template-columns: 1fr; }
+
+    .partners-grid { gap: 2rem; }
+    .partner-item img { max-height: 65px; max-width: 120px; }
+
+    .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .form-row { grid-template-columns: 1fr; }
+    .social-row { flex-wrap: wrap; }
+
+    footer { flex-direction: column; align-items: center; text-align: center; gap: 0.8rem; }
+    .footer-links { justify-content: center; }
+  }
 </style>
 </head>
 <body>
@@ -437,7 +482,8 @@
 <!-- NAVIGATION -->
 <nav>
   <a class="nav-logo" href="#hero">DEVINCI <span>RACE</span></a>
-  <ul class="nav-links">
+  <button class="nav-toggle" id="nav-toggle" aria-label="Menu">☰</button>
+  <ul class="nav-links" id="nav-links">
     <li><a href="#about">L'événement</a></li>
     <li><a href="#programme">Programme</a></li>
     <li><a href="#inscription">Inscription</a></li>
@@ -869,5 +915,11 @@
   </div>
 </footer>
 
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const navLinks = document.getElementById('nav-links');
+  toggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+</script>
 </body>
 </html>
