@@ -4,11 +4,77 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Partenaires — DeVinci Race 2027</title>
-<meta name="description" content="Les partenaires de la 5ème édition de la DeVinci Race. Découvrez les institutions et entreprises qui soutiennent la régate des Grandes Écoles.">
+<meta name="description" content="Devenez partenaire de la 5ème édition de la DeVinci Race. Formules de partenariat, avantages et contact.">
 <link rel="icon" type="image/png" href="PhotosSite/ADV-Logo1-FondNoir .png">
 <link rel="apple-touch-icon" href="PhotosSite/ADV-Logo1-FondNoir .png">
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@300;400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
+<style>
+  /* ── TABLE PARTENARIAT ── */
+  .part-wrap { overflow-x: auto; margin-top: 2.5rem; -webkit-overflow-scrolling: touch; }
+  .part-table {
+    width: 100%; min-width: 680px;
+    border-collapse: collapse;
+    font-family: 'Barlow', sans-serif;
+    font-size: 0.85rem;
+  }
+  .part-table th, .part-table td {
+    padding: 0.6rem 1rem;
+    text-align: center;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .part-table td:first-child { text-align: left; color: var(--text); font-size: 0.83rem; }
+  .part-table .th-tier {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 1.1rem; font-weight: 800; letter-spacing: 0.06em;
+    color: white; padding: 0.9rem 1rem;
+  }
+  .part-table .th-tier.fd { background: #bbb; color: white; }
+  .part-table .th-tier.po { background: var(--accent-light); }
+  .part-table .th-tier.pm { background: var(--accent); }
+  .part-table .th-tier.pp { background: #9c2a54; }
+  .part-table .th-tier.pt { background: #5a1030; }
+  .part-table .th-prestation {
+    text-align: left; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--accent); background: var(--bg-section); padding: 0.7rem 1rem;
+    border-bottom: 0.5px solid var(--border);
+  }
+  .part-table tr:hover td { background: rgba(212,71,122,0.03); }
+  .part-table .check { color: var(--accent); font-size: 1.1rem; font-weight: 700; }
+  .part-table .cross { color: #ccc; font-size: 1rem; }
+  .part-table .td-fd { color: #bbb; }
+  .part-table .tarif-row td {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 800; font-size: 1.05rem;
+    border-top: 2px solid var(--border); border-bottom: none;
+    padding: 1rem;
+  }
+  .part-table .tarif-row td:first-child { color: var(--text-muted); font-size: 0.8rem; font-weight: 600; font-family: 'Barlow', sans-serif; }
+  .tarif-fd { color: #999; }
+  .tarif-po { color: var(--accent-light); }
+  .tarif-pm { color: var(--accent); }
+  .tarif-pp { color: #9c2a54; }
+  .tarif-pt { color: #5a1030; }
+
+  /* ── STATS PARTENAIRE ── */
+  .partner-stats { display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin: 2rem 0 0; }
+  .partner-stat { text-align: center; }
+  .partner-stat .n { font-family: 'Barlow Condensed', sans-serif; font-size: 2.8rem; font-weight: 800; color: var(--accent); line-height: 1; }
+  .partner-stat .l { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; }
+
+  /* ── CONTACT PARTENARIAT ── */
+  .contact-part-card {
+    background: var(--card-bg); border: 0.5px solid var(--border);
+    border-radius: 8px; padding: 2rem; max-width: 480px;
+    box-shadow: 0 2px 12px rgba(180,80,120,0.06);
+  }
+
+  @media (max-width: 768px) {
+    .partner-stats { gap: 1.2rem; }
+    .partner-stat .n { font-size: 2rem; }
+  }
+</style>
 </head>
 <body>
 
@@ -33,53 +99,228 @@
   </div>
 </nav>
 
-<section class="partners page-section">
-  <div class="section-eyebrow">Soutiens</div>
-  <h2 class="section-title">Nos partenaires pour cette 5ème édition</h2>
+<!-- ── FORMULES DE PARTENARIAT ── -->
+<section class="page-section" style="background: var(--bg-section); border-bottom: 0.5px solid var(--border);">
+  <div class="section-eyebrow">Partenariat 2027</div>
+  <h2 class="section-title">Les formules de partenariat</h2>
   <div class="divider"></div>
-  <p class="section-lead">La De Vinci Race est rendue possible grâce au soutien de partenaires engagés, de notre club, de nos institutions et de nombreux acteurs motivés par le projet.</p>
+  <p class="section-lead">Associez votre marque à un événement universitaire d'envergure européenne au cœur de Paris. Choisissez la formule adaptée à votre ambition.</p>
+
+  <!-- Chiffres clés édition 2026 -->
+  <div class="partner-stats">
+    <div class="partner-stat"><div class="n">180</div><div class="l">Participants en 2026</div></div>
+    <div class="partner-stat"><div class="n">3</div><div class="l">Pays représentés</div></div>
+    <div class="partner-stat"><div class="n">15</div><div class="l">Écoles concurrentes</div></div>
+    <div class="partner-stat"><div class="n">28</div><div class="l">Courses disputées</div></div>
+    <div class="partner-stat"><div class="n">250</div><div class="l">Participants visés 2027</div></div>
+  </div>
+
+  <!-- Tableau des formules -->
+  <div class="part-wrap">
+    <table class="part-table">
+      <thead>
+        <tr>
+          <th style="text-align:left; font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:0.85rem; letter-spacing:0.08em; color:var(--text-muted); text-transform:uppercase; padding:0.9rem 1rem; background:var(--bg-section);">Prestations</th>
+          <th class="th-tier fd">FD</th>
+          <th class="th-tier po">PO</th>
+          <th class="th-tier pm">PM</th>
+          <th class="th-tier pp">PP</th>
+          <th class="th-tier pt">PT</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Visibilité -->
+        <tr><td class="th-prestation" colspan="6">Visibilité</td></tr>
+        <tr>
+          <td>Naming de l'événement entier</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Site Web</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>RS 4 écoles et Pôle</td>
+          <td class="td-fd"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Posts dédiés réseaux sociaux</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Couverture de l'event et utilisation image</td>
+          <td class="td-fd"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Présence dans l'aftermovie</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Parcours client / Fan Zone</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Écran géant Fan Zone</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Parcours de course : arrivée, podium…</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+
+        <!-- Branding -->
+        <tr><td class="th-prestation" colspan="6">Branding athlètes &amp; équipements</td></tr>
+        <tr>
+          <td>Logo sur t-shirts organisateurs</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Bannière exclusive ligne d'arrivée</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+
+        <!-- Activation -->
+        <tr><td class="th-prestation" colspan="6">Activation</td></tr>
+        <tr>
+          <td>Stand activé</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Goodies brandés offerts aux participants</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Prise de parole sur scène / cérémonie</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Remise du trophée / podium</td>
+          <td class="td-fd"><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="cross">✗</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Fourniture (frais supp) avec votre logo</td>
+          <td class="td-fd"><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+
+        <!-- Tarifs -->
+        <tr class="tarif-row">
+          <td style="font-family:'Barlow Condensed',sans-serif; font-weight:700; letter-spacing:0.06em; text-transform:uppercase; font-size:0.85rem;">Tarifs</td>
+          <td class="tarif-fd">Dotation</td>
+          <td class="tarif-po">2 000 €</td>
+          <td class="tarif-pm">5 000 €</td>
+          <td class="tarif-pp">10 000 €</td>
+          <td class="tarif-pt">20 000 €</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:0.75rem; color:var(--text-muted); margin-top:1rem; line-height:1.8;">
+    FD = Fournisseur Dotation &nbsp;·&nbsp; PO = Partenaire Officiel &nbsp;·&nbsp; PM = Partenaire Majeur &nbsp;·&nbsp; PP = Partenaire Premium &nbsp;·&nbsp; PT = Partenaire Titre
+  </p>
+</section>
+
+<!-- ── PARTENAIRES ACTUELS ── -->
+<section class="partners" style="border-bottom: 0.5px solid var(--border);">
+  <div class="section-eyebrow">Soutiens</div>
+  <h2 class="section-title">Ils nous soutiennent déjà</h2>
+  <div class="divider"></div>
   <div class="partners-grid">
-    <div class="partner-item">
-      <img src="Logos/Logo Boulogne 92 - Bonne version_detoure.png" alt="Boulogne 92">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo CIDI_detoure.png" alt="CIDI">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo CPP_detoure.png" alt="Communauté Portuaire de Paris">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo CROUS Versailles_detoure.png" alt="Crous Versailles">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo CVEC_detoure.png" alt="CVEC">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo Entre-Mets_detoure.png" alt="Entre-Mets Traiteur">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo FFA V2_detoure.png" alt="FFAviron Île-de-France">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo FFSU_detoure.png" alt="FF Sport U">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/LOGO Incept classique_detoure.png" alt="Incept">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo PYM.png" alt="Paris Yacht Marina">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo Hansen Marine.png" alt="Hansen Marine">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo-pole.png" alt="Pôle De Vinci">
-    </div>
-    <div class="partner-item">
-      <img src="Logos/Logo CM.png" alt="Crédit Mutuel">
+    <div class="partner-item"><img src="Logos/Logo Boulogne 92 - Bonne version_detoure.png" alt="Boulogne 92"></div>
+    <div class="partner-item"><img src="Logos/Logo CIDI_detoure.png" alt="CIDI"></div>
+    <div class="partner-item"><img src="Logos/Logo CPP_detoure.png" alt="Communauté Portuaire de Paris"></div>
+    <div class="partner-item"><img src="Logos/Logo CROUS Versailles_detoure.png" alt="Crous Versailles"></div>
+    <div class="partner-item"><img src="Logos/Logo CVEC_detoure.png" alt="CVEC"></div>
+    <div class="partner-item"><img src="Logos/Logo Entre-Mets_detoure.png" alt="Entre-Mets Traiteur"></div>
+    <div class="partner-item"><img src="Logos/Logo FFA V2_detoure.png" alt="FFAviron Île-de-France"></div>
+    <div class="partner-item"><img src="Logos/Logo FFSU_detoure.png" alt="FF Sport U"></div>
+    <div class="partner-item"><img src="Logos/LOGO Incept classique_detoure.png" alt="Incept"></div>
+    <div class="partner-item"><img src="Logos/Logo PYM.png" alt="Paris Yacht Marina"></div>
+    <div class="partner-item"><img src="Logos/Logo Hansen Marine.png" alt="Hansen Marine"></div>
+    <div class="partner-item"><img src="Logos/Logo-pole.png" alt="Pôle De Vinci"></div>
+    <div class="partner-item"><img src="Logos/Logo CM.png" alt="Crédit Mutuel"></div>
+  </div>
+</section>
+
+<!-- ── CONTACT PARTENARIAT ── -->
+<section style="background: var(--bg-section);">
+  <div class="section-eyebrow">Nous rejoindre</div>
+  <h2 class="section-title">Devenir partenaire 2027</h2>
+  <div class="divider"></div>
+  <p class="section-lead">Vous souhaitez soutenir la 5ème édition et bénéficier d'une visibilité auprès de plus de 250 participants et du public étudiant ? Contactez notre responsable partenariats.</p>
+  <div style="margin-top: 2rem;">
+    <div class="contact-assoc" style="max-width:480px;">
+      <div class="avatar" style="width:52px;height:52px;font-size:1rem;">LJ</div>
+      <div class="assoc-info">
+        <div class="name">Laureline Jousset</div>
+        <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:0.3rem;">Responsable Partenariats — DeVinci Race 2027</p>
+        <a href="mailto:Laureline.jousset-jean-thomas@edu.devinci.fr">Laureline.jousset-jean-thomas@edu.devinci.fr</a>
+      </div>
     </div>
   </div>
-  <p style="font-size:0.82rem; color:var(--text-muted);">Vous souhaitez soutenir la 5ème édition ? <a href="mailto:avirondevinci@devinci.fr" style="color:var(--accent);">avirondevinci@devinci.fr</a></p>
 </section>
 
 <footer>
