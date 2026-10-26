@@ -339,3 +339,12 @@ footer { padding: 2rem 3rem; border-top: 0.5px solid var(--border); background: 
   .photos-grid { grid-template-columns: 1fr; }
   .nav-social { margin-left: 0; }
 }
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 1000px;
+  margin: 3rem auto 0;
+}
